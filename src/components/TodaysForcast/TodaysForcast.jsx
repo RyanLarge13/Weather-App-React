@@ -1,6 +1,6 @@
 const TodaysForcast = ({ info }) => {
   return (
-    <section>
+    <section className="todays-forcast">
       <h1>{info.current_weather.temperature}</h1>
     </section>
   );
