@@ -1,3 +1,5 @@
+import './todaysForcast.scss'
+
 const TodaysForcast = ({ info }) => {
   return (
     <section className="todays-forcast">
