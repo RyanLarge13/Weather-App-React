@@ -15,6 +15,7 @@ const TodaysForcast = ({ info }) => {
   const [stateCode, setStateCode] = useState(0);
   const [weatherName, setWeatherName] = useState("");
   const [windy, setWindy] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     determineIcon();
@@ -25,17 +26,18 @@ const TodaysForcast = ({ info }) => {
     setStateCode(code);
     findIcon();
   };
-  
+
   const findIcon = () => {
     weatherCodes.map((code) => {
       code.codes.includes(stateCode) ? setState(code) : null;
     });
   };
-  
+
   const setState = (code) => {
     setIcon(code.icon);
     setWeatherName(code.name);
     info.current_weather.windspeed > 10 ? setWindy(true) : setWindy(false);
+    setLoading(false);
     if (windy) setIconComponent(TiWeatherWindyCloudy);
     if (icon === 0) setIconComponent(TiWeatherSunny);
     if (icon === 1) setIconComponent(TiWeatherCloudy);
@@ -44,23 +46,27 @@ const TodaysForcast = ({ info }) => {
   };
 
   return (
-    <section className="todays-forcast">
-      <div className="icon">{iconComponent}</div>
-      <h1>{weatherName}</h1>
-      <h2>{`${info.current_weather.temperature} F`}</h2>
-      <h2>{`${info.current_weather.windspeed} mph`}</h2>
-      <div className="todays-date-container">
-        <p className="week-day">
-          {new Date().toLocaleDateString("en-US", {
-            weekday: "short",
-          })}
-        </p>
-        <p className="year-day">
-          {new Date().toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-          })}
-        </p>
+    <section className={loading ? "todays-forcast.blur" : "todays-forcast"}>
+      <div className="icon-and-date">
+        <div className="icon">{iconComponent}</div>
+        <div className="todays-date-container">
+          <p className="week-day">
+            {new Date().toLocaleDateString("en-US", {
+              weekday: "short",
+            })}
+          </p>
+          <p className="year-day">
+            {new Date().toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
+          </p>
+        </div>
+      </div>
+      <h1 className="weather-name">{weatherName}</h1>
+      <div className="temp-windspeed">
+        <h2>{`${info.current_weather.temperature} F`}</h2>
+        <h2>{`${info.current_weather.windspeed} mph`}</h2>
       </div>
     </section>
   );

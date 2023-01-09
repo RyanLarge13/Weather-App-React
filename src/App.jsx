@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
+import "./main.scss";
 
 const App = () => {
   const [info, setInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -15,17 +17,22 @@ const App = () => {
 
   const getInfo = (long, lat) => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    
+
     Axios.get(
       `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation,weathercode,windspeed_10m,winddirection_10m,windgusts_10m,temperature_80m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=${timeZone}`
     )
       .then((res) => {
         setInfo(res.data);
+        setLoading(false);
       })
       .catch((err) => setInfo(err));
   };
 
-  return <section>{info ? <TodaysForcast info={info} /> : <h1>You must turn on your location to view the weather</h1>}</section>;
+  return (
+    <section>
+      {info ? <TodaysForcast info={info} /> : null}
+    </section>
+  );
 };
 
 export default App;
