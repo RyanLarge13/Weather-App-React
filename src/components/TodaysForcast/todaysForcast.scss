@@ -5,4 +5,14 @@
 	min-width: 95%;
 	border-radius: 30px;
 	box-shadow: 0 0.15em 0.5em 0 #aaa;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.icon {
+		font-size: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0.25em;
+	}
 }

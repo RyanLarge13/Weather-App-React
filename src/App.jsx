@@ -25,7 +25,7 @@ const App = () => {
       .catch((err) => setInfo(err));
   };
 
-  return <section>{info ? <TodaysForcast info={info} /> : ""}</section>;
+  return <section>{info ? <TodaysForcast info={info} /> : <h1>You must turn on your location to view the weather</h1>}</section>;
 };
 
 export default App;
