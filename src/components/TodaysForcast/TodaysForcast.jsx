@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import weatherCodes from "../../weatherCodes";
 import "./todaysForcast.scss";
+import Axios from "axios";
 import {
   TiWeatherSunny,
   TiWeatherPartlySunny,
@@ -10,22 +11,29 @@ import {
 import { RiSnowyLine, RiRainyLine } from "react-icons/ri";
 
 const TodaysForcast = ({ info }) => {
-  const [icon, setIcon] = useState(0);
+  const [icon, setIcon] = useState(null);
   const [iconComponent, setIconComponent] = useState(null);
-  const [stateCode, setStateCode] = useState(0);
+  const [stateCode, setStateCode] = useState(null);
   const [weatherName, setWeatherName] = useState("");
   const [windy, setWindy] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [location, setLocation] = useState(null);
+
+  const APIkey = "e942f755a159eeb9a8cff56a595afac5";
+  const limit = 5;
 
   useEffect(() => {
-    determineIcon();
-  }, []);
-
-  const determineIcon = async () => {
-    const code = await info.current_weather.weathercode;
-    setStateCode(code);
+    navigator.geolocation.getCurrentPosition((position) => {
+      const long = position.coords.longitude;
+      const lat = position.coords.latitude;
+      Axios.get(
+        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${APIkey}`
+      )
+        .then((res) => setLocation(res.data[0].name))
+        .catch((err) => console.log(err));
+    });
+    setStateCode(info.current_weather.weathercode);
     findIcon();
-  };
+  }, [stateCode, icon]);
 
   const findIcon = () => {
     weatherCodes.map((code) => {
@@ -33,11 +41,14 @@ const TodaysForcast = ({ info }) => {
     });
   };
 
-  const setState = (code) => {
-    setIcon(code.icon);
+  const setState = async (code) => {
+    await setIcon(code.icon);
     setWeatherName(code.name);
     info.current_weather.windspeed > 10 ? setWindy(true) : setWindy(false);
-    setLoading(false);
+    checkState();
+  };
+
+  const checkState = () => {
     if (windy) setIconComponent(TiWeatherWindyCloudy);
     if (icon === 0) setIconComponent(TiWeatherSunny);
     if (icon === 1) setIconComponent(TiWeatherCloudy);
@@ -46,7 +57,7 @@ const TodaysForcast = ({ info }) => {
   };
 
   return (
-    <section className={loading ? "todays-forcast.blur" : "todays-forcast"}>
+    <section className={"todays-forcast"}>
       <div className="icon-and-date">
         <div className="icon">{iconComponent}</div>
         <div className="todays-date-container">
@@ -67,6 +78,7 @@ const TodaysForcast = ({ info }) => {
       <div className="temp-windspeed">
         <h2>{`${info.current_weather.temperature} F`}</h2>
         <h2>{`${info.current_weather.windspeed} mph`}</h2>
+        <h2>{location}</h2>
       </div>
     </section>
   );
