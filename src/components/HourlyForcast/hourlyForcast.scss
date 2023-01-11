@@ -9,7 +9,8 @@
 .hourly-container {
 	display: flex;
 	overflow-x: auto;
-	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
 	justify-content: flex-start;
 	align-items: center;
 

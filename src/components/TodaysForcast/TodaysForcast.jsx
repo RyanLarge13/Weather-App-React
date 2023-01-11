@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import weatherCodes from "../../weatherCodes";
 import "./todaysForcast.scss";
 import Axios from "axios";
@@ -7,6 +8,7 @@ import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain
 import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
 import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
 import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
+import WindyDay from "../../assets/weather-icons-master/production/fill/all/wind.svg";
 
 const TodaysForcast = ({ info }) => {
   const [icon, setIcon] = useState(null);
@@ -49,17 +51,24 @@ const TodaysForcast = ({ info }) => {
   };
 
   const checkState = () => {
-    if (windy) setIconComponent(CloudyDay);
+    if (windy) setIconComponent(WindyDay);
     if (icon === 0) setIconComponent(ClearDay);
-    if (icon === 1) setIconComponent(StormyDay);
+    if (icon === 1) setIconComponent(CloudyDay);
     if (icon === 2) setIconComponent(RainyDay);
     if (icon === 3) setIconComponent(SnowyDay);
+    if (icon === 4) setIconComponent(StormyDay);
   };
 
   return (
     <section className={"todays-forcast"}>
       <div className="icon-and-date">
-        <img className="icon" src={iconComponent} />
+        <motion.img
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.75, type: "spring", stiffness: 500 }}
+          className="icon"
+          src={iconComponent}
+        />
         <div className="todays-date-container">
           <p className="week-day">
             {new Date().toLocaleDateString("en-US", {
@@ -76,7 +85,7 @@ const TodaysForcast = ({ info }) => {
       </div>
       <h1 className="weather-name">{weatherName}</h1>
       <div className="temp-windspeed">
-        <h2>{`${info.current_weather.temperature} F`}</h2>
+        <h2>{`${info.current_weather.temperature} °F`}</h2>
         <h2>{`${info.current_weather.windspeed} mph`}</h2>
         <h2 className="location">{location}</h2>
       </div>

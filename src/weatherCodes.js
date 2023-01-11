@@ -32,7 +32,7 @@ const weatherCodes = [
   {
     name: "Thunder Storms",
     codes: [95, 96, 99, "*"],
-    icon: 1,
+    icon: 4,
   },
 ];
 
