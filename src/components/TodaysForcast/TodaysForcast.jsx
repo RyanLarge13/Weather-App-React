@@ -77,7 +77,7 @@ const TodaysForcast = ({ info }) => {
       <div className="temp-windspeed">
         <h2>{`${info.current_weather.temperature} F`}</h2>
         <h2>{`${info.current_weather.windspeed} mph`}</h2>
-        <h2>{location}</h2>
+        <h2 className="location">{location}</h2>
       </div>
     </section>
   );

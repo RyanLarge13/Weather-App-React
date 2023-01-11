@@ -51,5 +51,9 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		.location {
+			font-size: 1em;
+			max-width: 25%;
+		}
 	}
 }
