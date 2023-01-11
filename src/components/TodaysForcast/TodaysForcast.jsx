@@ -4,7 +4,6 @@ import "./todaysForcast.scss";
 import Axios from "axios";
 import {
   TiWeatherSunny,
-  TiWeatherPartlySunny,
   TiWeatherWindyCloudy,
   TiWeatherCloudy,
 } from "react-icons/ti";
@@ -12,23 +11,23 @@ import { RiSnowyLine, RiRainyLine } from "react-icons/ri";
 
 const TodaysForcast = ({ info }) => {
   const [icon, setIcon] = useState(null);
-  const [iconComponent, setIconComponent] = useState(null);
+  const [iconComponent, setIconComponent] = useState(<TiWeatherSunny />);
   const [stateCode, setStateCode] = useState(null);
   const [weatherName, setWeatherName] = useState("");
   const [windy, setWindy] = useState(false);
   const [location, setLocation] = useState(null);
 
   const APIkey = "e942f755a159eeb9a8cff56a595afac5";
-  const limit = 5;
+  const limit = 1;
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
-      const long = position.coords.longitude;
+      const lon = position.coords.longitude;
       const lat = position.coords.latitude;
       Axios.get(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${APIkey}`
       )
-        .then((res) => setLocation(res.data[0].name))
+        .then((res) => setLocation(`${res.data[0].name}, ${res.data[0].state}`))
         .catch((err) => console.log(err));
     });
     setStateCode(info.current_weather.weathercode);
@@ -41,19 +40,19 @@ const TodaysForcast = ({ info }) => {
     });
   };
 
-  const setState = async (code) => {
-    await setIcon(code.icon);
+  const setState = (code) => {
+    setIcon(code.icon);
     setWeatherName(code.name);
     info.current_weather.windspeed > 10 ? setWindy(true) : setWindy(false);
     checkState();
   };
 
   const checkState = () => {
-    if (windy) setIconComponent(TiWeatherWindyCloudy);
-    if (icon === 0) setIconComponent(TiWeatherSunny);
-    if (icon === 1) setIconComponent(TiWeatherCloudy);
-    if (icon === 2) setIconComponent(RiRainyLine);
-    if (icon === 3) setIconComponent(RiSnowyLine);
+    if (windy) setIconComponent(<TiWeatherWindyCloudy />);
+    if (icon === 0) setIconComponent(<TiWeatherSunny />);
+    if (icon === 1) setIconComponent(<TiWeatherCloudy />);
+    if (icon === 2) setIconComponent(<RiRainyLine />);
+    if (icon === 3) setIconComponent(<RiSnowyLine />);
   };
 
   return (
