@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   TiWeatherSunny,
   TiWeatherWindyCloudy,
@@ -8,11 +7,6 @@ import { RiSnowyLine, RiRainyLine } from "react-icons/ri";
 import "./hourlyForcast.scss";
 
 const HourlyForcast = ({ info }) => {
-
-  useEffect(() => {
-    console.log(info);
-  });
-
   return (
     <>
       <h2 className="hourly-title">Hourly</h2>

@@ -27,7 +27,9 @@ const TodaysForcast = ({ info }) => {
       Axios.get(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${APIkey}`
       )
-        .then((res) => setLocation(`${res.data[0].name}, ${res.data[0].state}`))
+        .then((res) =>
+          setLocation(`${res.data[0].name}, ${res.data[0].state || null}`)
+        )
         .catch((err) => console.log(err));
     });
     setStateCode(info.current_weather.weathercode);

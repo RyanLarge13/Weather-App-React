@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
 import HourlyForcast from "./components/HourlyForcast/HourlyForcast";
+import DailyForcast from "./components/DailyForcast/DailyForcast";
 import "./main.scss";
 
 const App = () => {
   const [info, setInfo] = useState(null);
   const [hourlyInfo, setHourlyInfo] = useState(null);
+  const [dailyInfo, setDailyInfo] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -25,6 +27,7 @@ const App = () => {
       .then((res) => {
         setInfo(res.data);
         setHourlyInfo(res.data.hourly);
+        setDailyInfo(res.data.daily);
       })
       .catch((err) => setInfo(err));
   };
@@ -35,6 +38,7 @@ const App = () => {
         <section>
           <TodaysForcast info={info} />
           <HourlyForcast info={hourlyInfo} />
+          <DailyForcast info={dailyInfo} />
         </section>
       ) : null}
     </section>
