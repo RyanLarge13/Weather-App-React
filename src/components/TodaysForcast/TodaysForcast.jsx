@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import weatherCodes from "../../weatherCodes";
 import "./todaysForcast.scss";
 import Axios from "axios";
-import {
-  TiWeatherSunny,
-  TiWeatherWindyCloudy,
-  TiWeatherCloudy,
-} from "react-icons/ti";
-import { RiSnowyLine, RiRainyLine } from "react-icons/ri";
+import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
+import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
+import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
+import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
+import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
 
 const TodaysForcast = ({ info }) => {
   const [icon, setIcon] = useState(null);
-  const [iconComponent, setIconComponent] = useState(<TiWeatherSunny />);
+  const [iconComponent, setIconComponent] = useState(ClearDay);
   const [stateCode, setStateCode] = useState(null);
   const [weatherName, setWeatherName] = useState("");
   const [windy, setWindy] = useState(false);
@@ -50,17 +49,17 @@ const TodaysForcast = ({ info }) => {
   };
 
   const checkState = () => {
-    if (windy) setIconComponent(<TiWeatherWindyCloudy />);
-    if (icon === 0) setIconComponent(<TiWeatherSunny />);
-    if (icon === 1) setIconComponent(<TiWeatherCloudy />);
-    if (icon === 2) setIconComponent(<RiRainyLine />);
-    if (icon === 3) setIconComponent(<RiSnowyLine />);
+    if (windy) setIconComponent(CloudyDay);
+    if (icon === 0) setIconComponent(ClearDay);
+    if (icon === 1) setIconComponent(StormyDay);
+    if (icon === 2) setIconComponent(RainyDay);
+    if (icon === 3) setIconComponent(SnowyDay);
   };
 
   return (
     <section className={"todays-forcast"}>
       <div className="icon-and-date">
-        <div className="icon">{iconComponent}</div>
+        <img className="icon" src={iconComponent} />
         <div className="todays-date-container">
           <p className="week-day">
             {new Date().toLocaleDateString("en-US", {

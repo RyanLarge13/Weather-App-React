@@ -1,9 +1,8 @@
-import {
-  TiWeatherSunny,
-  TiWeatherWindyCloudy,
-  TiWeatherCloudy,
-} from "react-icons/ti";
-import { RiSnowyLine, RiRainyLine } from "react-icons/ri";
+import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
+import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
+import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
+import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
+import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
 import "./hourlyForcast.scss";
 
 const HourlyForcast = ({ info }) => {
@@ -14,22 +13,24 @@ const HourlyForcast = ({ info }) => {
         {info.time.map((i, index) =>
           index < 24 ? (
             <div className="hourly-div" key={index}>
-              <div className="icon">
-                {info.weathercode[index] === 0 ? (
-                  <TiWeatherSunny />
-                ) : info.weathercode[index] >= 1 &&
-                  info.weathercode[index] <= 3 ? (
-                  <TiWeatherCloudy />
-                ) : info.weathercode[index] >= 61 &&
-                  info.weathercode[index] <= 82 ? (
-                  <RiRainyLine />
-                ) : info.weathercode[index] >= 71 &&
-                  info.weathercode[index] <= 77 ? (
-                  <RiSnowyLine />
-                ) : (
-                  <TiWeatherWindyCloudy />
-                )}
-              </div>
+              <img
+                className="icon"
+                src={
+                  info.weathercode[index] === 0
+                    ? ClearDay
+                    : info.weathercode[index] >= 1 &&
+                      info.weathercode[index] <= 3
+                    ? CloudyDay
+                    : info.weathercode[index] >= 61 &&
+                      info.weathercode[index] <= 82
+                    ? RainyDay
+                    : info.weathercode[index] >= 71 &&
+                      info.weathercode[index] <= 77
+                    ? SnowyDay
+                    : StormyDay
+                }
+                alt="icon"
+              />
               <h2 className="temp">{info.apparent_temperature[index]} F</h2>
               <h3>Humidity: {info.relativehumidity_2m[index]}</h3>
               <h4>Wind: {info.windspeed_10m[index]} mph</h4>
