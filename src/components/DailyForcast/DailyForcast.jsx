@@ -55,8 +55,8 @@ const DailyForcast = ({ info }) => {
           />
           <h2 className="time">{days[index]}</h2>
           <div className="daily-info">
-            <h3>Low: {info.temperature_2m_min[index]} °F</h3>
             <h3>High: {info.temperature_2m_max[index]} °F</h3>
+            <h3>Low: {info.temperature_2m_min[index]} °F</h3>
             <div className="sunrise-sunset">
               <h4>
                 <img className="sunrise" src={SunRise} alt="sunrise" />
