@@ -3,6 +3,7 @@
 .todays-forcast.blur {
 	filter: blur(5px);
 }
+
 .todays-forcast {
 	color: #000;
 	margin: 1em auto;
@@ -17,39 +18,52 @@
 	justify-content: space-between;
 	align-items: center;
 	background-color: rgba(255, 255, 255, 0.5);
+
 	.icon-and-date {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2em;
+
 		.icon {
 			width: 200px;
 			height: 200px;
 		}
+
 		.todays-date-container {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+
 			.week-day {
 				font-weight: 600;
 				font-size: 50px;
 			}
+
 			.year-day {
 				font-weight: 600;
 				font-size: 25px;
 			}
 		}
 	}
+
 	.weather-name {
 		align-self: flex-start;
 	}
+
 	.temp-windspeed {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+
+		.wind {
+			width: 30px;
+			height: 30px;
+		}
+
 		.location {
 			font-size: 1em;
 			max-width: 25%;

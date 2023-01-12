@@ -22,14 +22,30 @@
 			width: 50px;
 			height: 50px;
 		}
+
 		.time {
 			position: absolute;
 			right: 10px;
 			top: 10px;
 		}
+
 		.daily-info {
 			margin-left: 15%;
+
+			.high-container,
+			.low-container {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+			}
+
+			.high,
+			.low {
+				width: 25px;
+				height: 25px;
+			}
 		}
+
 		.sunrise-sunset {
 			display: flex;
 			flex-direction: column;
@@ -38,7 +54,9 @@
 			right: 10px;
 			justify-content: space-between;
 			align-items: center;
-			.sunrise, .sunset {
+
+			.sunrise,
+			.sunset {
 				width: 30px;
 				height: 30px;
 			}

@@ -3,12 +3,16 @@ import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
 import HourlyForcast from "./components/HourlyForcast/HourlyForcast";
 import DailyForcast from "./components/DailyForcast/DailyForcast";
+import militaryTimeArray from "./militaryTime";
 import "./main.scss";
 
 const App = () => {
   const [info, setInfo] = useState(null);
   const [hourlyInfo, setHourlyInfo] = useState(null);
   const [dailyInfo, setDailyInfo] = useState(null);
+  const [dayOrNight, setDayOrNight] = useState(true);
+  const [sunrise, setSunrise] = useState(null);
+  const [sunset, setSunset] = useState(null);
   const hour = new Date().getHours();
 
   useEffect(() => {
@@ -29,22 +33,31 @@ const App = () => {
         setInfo(res.data);
         setHourlyInfo(res.data.hourly);
         setDailyInfo(res.data.daily);
+        const sunrise = res.data.daily.sunrise[0].substring(11, 13);
+        const sunset = res.data.daily.sunset[0].substring(11, 13);
+        setSunrise(sunrise);
+        setSunset(sunset);
+        checkDayNight(sunrise, sunset);
       })
       .catch((err) => setInfo(err));
   };
 
+  const checkDayNight = (rise, set) => {
+    const day = militaryTimeArray.slice(rise, set);
+    day.includes(hour) ? setDayOrNight(true) : setDayOrNight(false);
+  };
+
   return (
-    <section
-      className={hour > 15 && hour < 7 ? "night-background" : "day-background"}
-    >
+    <section className={dayOrNight ? "day-background" : "night-background"}>
       {info ? (
         <section className="main-sec">
-          <TodaysForcast info={info} />
-          <HourlyForcast info={hourlyInfo} />
+          <TodaysForcast info={info} dayOrNight={dayOrNight} />
+          <HourlyForcast info={hourlyInfo} sunrise={sunrise} sunset={sunset} />
           <DailyForcast info={dailyInfo} />
         </section>
-      ) : <section className="loading" ></section>
-      }
+      ) : (
+        <section className="loading"></section>
+      )}
     </section>
   );
 };

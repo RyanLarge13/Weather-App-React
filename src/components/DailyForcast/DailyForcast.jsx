@@ -7,6 +7,8 @@ import CloudyDay from "../../assets/weather-icons-master/production/fill/all/par
 import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
 import SunSet from "../../assets/weather-icons-master/production/fill/all/moonrise.svg";
 import SunRise from "../../assets/weather-icons-master/production/fill/all/sunrise.svg";
+import High from "../../assets/weather-icons-master/production/fill/all/thermometer-warmer.svg";
+import Low from "../../assets/weather-icons-master/production/fill/all/thermometer-colder.svg";
 import "./dailyForcast.scss";
 
 const DailyForcast = ({ info }) => {
@@ -55,8 +57,14 @@ const DailyForcast = ({ info }) => {
           />
           <h2 className="time">{days[index]}</h2>
           <div className="daily-info">
-            <h3>High: {info.temperature_2m_max[index]} °F</h3>
-            <h3>Low: {info.temperature_2m_min[index]} °F</h3>
+            <div className="high-container">
+              <img src={High} alt="high temp" className="high" />{" "}
+              <h3>{info.temperature_2m_max[index]} °F</h3>
+            </div>
+            <div className="low-container">
+              <img src={Low} alt="low temp" className="low" />
+              <h3>{info.temperature_2m_min[index]} °F</h3>
+            </div>
             <div className="sunrise-sunset">
               <h4>
                 <img className="sunrise" src={SunRise} alt="sunrise" />

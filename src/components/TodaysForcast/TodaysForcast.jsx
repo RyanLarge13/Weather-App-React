@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ImLocation } from "react-icons/im";
 import weatherCodes from "../../weatherCodes";
 import "./todaysForcast.scss";
 import Axios from "axios";
@@ -9,8 +10,13 @@ import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow
 import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
 import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
 import WindyDay from "../../assets/weather-icons-master/production/fill/all/wind.svg";
+import ClearNight from "../../assets/weather-icons-master/production/fill/all/clear-night.svg";
+import CloudyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night.svg";
+import RainyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-rain.svg";
+import SnowyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-snow.svg";
+import StormyNight from "../../assets/weather-icons-master/production/fill/all/thunderstorms-night-rain.svg";
 
-const TodaysForcast = ({ info }) => {
+const TodaysForcast = ({ info, dayOrNight }) => {
   const [icon, setIcon] = useState(null);
   const [iconComponent, setIconComponent] = useState(ClearDay);
   const [stateCode, setStateCode] = useState(null);
@@ -52,11 +58,11 @@ const TodaysForcast = ({ info }) => {
 
   const checkState = () => {
     if (windy) setIconComponent(WindyDay);
-    if (icon === 0) setIconComponent(ClearDay);
-    if (icon === 1) setIconComponent(CloudyDay);
-    if (icon === 2) setIconComponent(RainyDay);
-    if (icon === 3) setIconComponent(SnowyDay);
-    if (icon === 4) setIconComponent(StormyDay);
+    if (icon === 0) setIconComponent(dayOrNight ? ClearDay : ClearNight);
+    if (icon === 1) setIconComponent(dayOrNight ? CloudyDay : CloudyNight);
+    if (icon === 2) setIconComponent(dayOrNight ? RainyDay : RainyNight);
+    if (icon === 3) setIconComponent(dayOrNight ? SnowyDay : SnowyNight);
+    if (icon === 4) setIconComponent(dayOrNight ? StormyDay : StormyNight);
   };
 
   return (
@@ -86,8 +92,14 @@ const TodaysForcast = ({ info }) => {
       <h1 className="weather-name">{weatherName}</h1>
       <div className="temp-windspeed">
         <h2>{`${info.current_weather.temperature} °F`}</h2>
-        <h2>{`${info.current_weather.windspeed} mph`}</h2>
-        <h2 className="location">{location}</h2>
+        <h2>
+          <img src={WindyDay} alt="wind" className="wind" />
+          {`${info.current_weather.windspeed} mph`}
+        </h2>
+        <h2 className="location">
+          {<ImLocation />}
+          {location}
+        </h2>
       </div>
     </section>
   );
