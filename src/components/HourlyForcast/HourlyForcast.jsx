@@ -4,6 +4,8 @@ import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain
 import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
 import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
 import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
+import Wind from "../../assets/weather-icons-master/production/fill/all/wind.svg";
+import Humid from "../../assets/weather-icons-master/production/fill/all/humidity.svg";
 import "./hourlyForcast.scss";
 
 const HourlyForcast = ({ info }) => {
@@ -11,10 +13,9 @@ const HourlyForcast = ({ info }) => {
 
   return (
     <>
-      <h2 className="hourly-title">Hourly</h2>
       <div className="hourly-container">
         {info.time.map((i, index) =>
-          index < hour + 6 && index > hour - 3 ? (
+          index < 24 + hour && index > hour - 1 ? (
             <motion.div
               initial={{ scale: 0.5 }}
               whileInView={{ scale: 1 }}
@@ -40,8 +41,14 @@ const HourlyForcast = ({ info }) => {
                 alt="icon"
               />
               <h2 className="temp">{info.apparent_temperature[index]} °F</h2>
-              <h3>Humidity: {info.relativehumidity_2m[index]}</h3>
-              <h4>Wind: {info.windspeed_10m[index]} mph</h4>
+              <div className="humid">
+                <img src={Humid} alt="humidity" />
+                <h3>{info.relativehumidity_2m[index]}</h3>
+              </div>
+              <div className="wind">
+                <img src={Wind} alt="windspeed" />
+                <h4>{info.windspeed_10m[index]} mph</h4>
+              </div>
               <h5>
                 {Number(i.substring(11, 13)) >= 12
                   ? `${i.substring(11, 13) % 12 || 12} PM`

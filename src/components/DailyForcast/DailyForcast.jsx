@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
 import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
@@ -9,6 +10,24 @@ import SunRise from "../../assets/weather-icons-master/production/fill/all/sunri
 import "./dailyForcast.scss";
 
 const DailyForcast = ({ info }) => {
+  const [days, setDays] = useState([
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thur",
+    "Fri",
+    "Sat",
+  ]);
+  const today = new Date().getDay();
+
+  useEffect(() => {
+    const firstSet = days.slice(0, today);
+    const secondSet = days.slice(today);
+    const output = secondSet.concat(firstSet);
+    setDays(output);
+  }, []);
+
   return (
     <section className="daily-container">
       {info.time.map((i, index) => (
@@ -34,7 +53,7 @@ const DailyForcast = ({ info }) => {
             }
             alt="icon"
           />
-          <h2 className="time">{i.replaceAll("-", "/")}</h2>
+          <h2 className="time">{days[index]}</h2>
           <div className="daily-info">
             <h3>Low: {info.temperature_2m_min[index]} °F</h3>
             <h3>High: {info.temperature_2m_max[index]} °F</h3>

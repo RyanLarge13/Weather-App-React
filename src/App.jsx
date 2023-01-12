@@ -9,6 +9,7 @@ const App = () => {
   const [info, setInfo] = useState(null);
   const [hourlyInfo, setHourlyInfo] = useState(null);
   const [dailyInfo, setDailyInfo] = useState(null);
+  const hour = new Date().getHours();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -33,14 +34,17 @@ const App = () => {
   };
 
   return (
-    <section>
+    <section
+      className={hour > 15 && hour < 7 ? "night-background" : "day-background"}
+    >
       {info ? (
-        <section>
+        <section className="main-sec">
           <TodaysForcast info={info} />
           <HourlyForcast info={hourlyInfo} />
           <DailyForcast info={dailyInfo} />
         </section>
-      ) : null}
+      ) : <section className="loading" ></section>
+      }
     </section>
   );
 };

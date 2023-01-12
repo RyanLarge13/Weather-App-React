@@ -1,14 +1,9 @@
 //--ignore-compile
 
-.hourly-title {
-	text-align: center;
-	margin: 1em;
-	font-size: 3em;
-}
-
 .hourly-container {
 	display: flex;
 	overflow-x: auto;
+	overflow-y: hidden;
 	max-width: 100%;
 	min-width: 100%;
 	justify-content: flex-start;
@@ -18,11 +13,11 @@
 		min-width: 40%;
 		height: 300px;
 		border-radius: 10px;
-		box-shadow: 0 0 0.25em 0 #aaa;
+		box-shadow: 0 0 0.25em 0 #eee;
 		margin: 5%;
 		padding: 1em;
-		color: #fff;
-		background-image: linear-gradient(45deg, #006494 5%, #00a6fb 95%);
+		color: #000;
+		background-color: rgba(255, 255, 255, 0.5);
 		position: relative;
 
 		.icon {
@@ -30,10 +25,24 @@
 			height: 100px;
 		}
 
-		h3 {
-			margin: 1em 0;
-			margin-top: 40%;
-			font-size: 1em;
+		.wind {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			img {
+				width: 25px;
+				height: 25px;
+			}
+		}
+		.humid {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin-top: 40px;
+			img {
+				width: 25px;
+				height: 25px;
+			}
 		}
 
 		h5 {
