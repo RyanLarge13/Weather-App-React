@@ -44,7 +44,7 @@ const App = () => {
 
   const checkDayNight = (rise, set) => {
     const day = militaryTimeArray.slice(rise, set);
-    day.includes(hour) ? setDayOrNight(true) : setDayOrNight(false);
+    day.includes(hour.toString()) ? setDayOrNight(true) : setDayOrNight(false);
   };
 
   return (
