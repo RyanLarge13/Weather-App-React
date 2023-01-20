@@ -32,7 +32,7 @@ const TodaysForcast = ({ info, dayOrNight }) => {
       const lon = position.coords.longitude;
       const lat = position.coords.latitude;
       Axios.get(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${APIkey}`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${APIkey}`
       )
         .then((res) =>
           setLocation(`${res.data[0].name}, ${res.data[0].state || null}`)

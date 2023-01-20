@@ -31,30 +31,30 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
                 className="icon"
                 src={
                   info.weathercode[index] === 0
-                    ? i.substring(11, 13) > sunrise &&
-                      i.substring(11, 13) <= sunset
+                    ? i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
                       ? ClearDay
                       : ClearNight
                     : info.weathercode[index] >= 1 &&
                       info.weathercode[index] <= 3
-                    ? i.substring(11, 13) > sunrise &&
-                      i.substring(11, 13) <= sunset
+                    ? i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
                       ? CloudyDay
                       : CloudyNight
                     : info.weathercode[index] >= 61 &&
                       info.weathercode[index] <= 82
-                    ? i.substring(11, 13) > sunrise &&
-                      i.substring(11, 13) <= sunset
+                    ? i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
                       ? RainyDay
                       : RainyNight
                     : info.weathercode[index] >= 71 &&
                       info.weathercode[index] <= 77
-                    ? i.substring(11, 13) > sunrise &&
-                      i.substring(11, 13) <= sunset
+                    ? i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
                       ? SnowyDay
                       : SnowyNight
-                    : i.substring(11, 13) > sunrise &&
-                      i.substring(11, 13) <= sunset
+                    : i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
                     ? StormyDay
                     : StormyNight
                 }
