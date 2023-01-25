@@ -66,7 +66,7 @@ const TodaysForcast = ({ info, dayOrNight }) => {
   };
 
   return (
-    <section className={"todays-forcast"}>
+    <section className="todays-forcast">
       <div className="icon-and-date">
         <motion.img
           initial={{ scale: 0 }}

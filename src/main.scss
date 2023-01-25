@@ -7,11 +7,17 @@
 }
 
 .day-background {
-	background-image: linear-gradient(45deg, #006494 5%, #00a6fb 95%);
+	// background-image: linear-gradient(45deg, #006494 5%, #00a6fb 95%);
+	background-image: url("./assets/daytime-bg.jpeg");
 }
 
 .night-background {
-	background-image: linear-gradient(45deg, #000, #555);
+	// background-image: linear-gradient(45deg, #000, #555);
+	background-image: url("./assets/nightime-bg.jpg");
+	background-attachment: fixed;
+	mask-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
 .main-sec {
