@@ -5,37 +5,32 @@
 }
 
 .todays-forcast {
-	color: #000;
-	margin: 1em auto;
-	padding: 2em 1em;
-	min-height: 25vh;
-	max-width: 95%;
-	min-width: 95%;
-	border-radius: 30px;
-	box-shadow: 0 0.15em 0.5em 0 #eee;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	background-color: rgba(255, 255, 255, 0.5);
+	padding: 1em;
+	margin: 1em;
 
-	.icon-and-date {
-		width: 100%;
+	.icon {
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.dates-location {
+		position: absolute;
+		top: 25px;
+		right: 25px;
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 2em;
-
-		.icon {
-			width: 200px;
-			height: 200px;
-		}
 
 		.todays-date-container {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			margin-bottom: 2em;
 
 			.week-day {
 				font-weight: 600;
@@ -47,31 +42,38 @@
 				font-size: 25px;
 			}
 		}
-	}
-
-	.weather-name {
-		align-self: flex-start;
-	}
-
-	.temp-windspeed {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-
-		.wind {
-			width: 30px;
-			height: 30px;
-		}
-
 		.location {
-			font-size: 1em;
-			max-width: 25%;
+			text-align: center;
+			max-width: min-content;
+
+			.location-icon {
+				font-size: 2em;
+			}
 		}
 	}
-}
 
-.todays-forcast.night {
-	background-color: #000;
-	color: #fff;
+	.info-body {
+		margin-top: 165px;
+		.weather-name {
+			align-self: flex-start;
+		}
+
+		.temp-windspeed {
+
+			.wind-container {
+				display: flex;
+				justify-content: start;
+				align-items: center;
+				.wind {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			.location {
+				font-size: 1em;
+				max-width: 25%;
+			}
+		}
+	}
 }

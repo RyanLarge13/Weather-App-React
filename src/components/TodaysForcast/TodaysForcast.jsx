@@ -67,14 +67,14 @@ const TodaysForcast = ({ info, dayOrNight }) => {
 
   return (
     <section className="todays-forcast">
-      <div className="icon-and-date">
-        <motion.img
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.75, type: "spring", stiffness: 500 }}
-          className="icon"
-          src={iconComponent}
-        />
+      <motion.img
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.75, type: "spring", stiffness: 500 }}
+        className="icon"
+        src={iconComponent}
+      />
+      <div className="dates-location">
         <div className="todays-date-container">
           <p className="week-day">
             {new Date().toLocaleDateString("en-US", {
@@ -88,18 +88,20 @@ const TodaysForcast = ({ info, dayOrNight }) => {
             })}
           </p>
         </div>
+        <div className="location">
+          <ImLocation className="location-icon" />
+          <h2 className="location">{location}</h2>
+        </div>
       </div>
-      <h1 className="weather-name">{weatherName}</h1>
-      <div className="temp-windspeed">
-        <h2>{`${info.current_weather.temperature} °F`}</h2>
-        <h2>
-          <img src={WindyDay} alt="wind" className="wind" />
-          {`${info.current_weather.windspeed} mph`}
-        </h2>
-        <h2 className="location">
-          {<ImLocation />}
-          {location}
-        </h2>
+      <div className="info-body">
+        <h1 className="weather-name">{weatherName}</h1>
+        <div className="temp-windspeed">
+          <h2>{`${info.current_weather.temperature} °F`}</h2>
+          <div className="wind-container">
+            <h2>{`${info.current_weather.windspeed} mph`}</h2>
+            <img src={WindyDay} alt="wind" className="wind" />
+          </div>
+        </div>
       </div>
     </section>
   );

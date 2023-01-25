@@ -9,6 +9,10 @@
 	justify-content: flex-start;
 	align-items: center;
 
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
 	.hourly-div {
 		min-width: 40%;
 		height: 300px;

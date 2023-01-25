@@ -44,11 +44,14 @@ const App = () => {
 
   const checkDayNight = (rise, set) => {
     const day = militaryTimeArray.slice(rise, set);
-    day.includes(hour.toString()) ? setDayOrNight(true) : setDayOrNight(false);
+    day.includes((hour - 1).toString())
+      ? setDayOrNight(true)
+      : setDayOrNight(false);
   };
 
   return (
     <section className={dayOrNight ? "day-background" : "night-background"}>
+    <div className="bg-img"></div>
       {info ? (
         <section className="main-sec">
           <TodaysForcast info={info} dayOrNight={dayOrNight} />
