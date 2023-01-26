@@ -40,24 +40,35 @@
 }
 
 .night-background {
-	background-image: url("./assets/nightime-bg.jpg");
-	background-attachment: fixed;
-	mask-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+	.bg-img {
+		background-image: url("./assets/nightime-bg.jpg");
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+		min-height: 100vh;
+		min-width: 100vw;
+		position: fixed;
+		z-index: -1;
+	}
+
+	@media (min-width: 0px) and (max-width: 1000px) {
+		.bg-img {
+			background-image: url("./assets/mobile/mobilenight-bg.jpeg");
+		}
+	}
 
 	.todays-forcast {
-		background-color: #000;
+		background-color: rgba(0,0,0,0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
 	.hourly-div {
-		background-color: #000;
+		background-color: rgba(0,0,0,0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
 	.day {
-		background-color: #000;
+		background-color: rgba(0,0,0,0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
