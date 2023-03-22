@@ -43,6 +43,22 @@ const TodaysForcast = ({ info, dayOrNight }) => {
     findIcon();
   }, [stateCode, icon]);
 
+  useEffect(() => {
+    Notification.requestPermission().then((res) => {
+      let interval;
+      if (Notification.permission === "granted") {
+        interval = setInterval(() => {
+          const notify = new Notification(`Weather in ${location}`, {
+            body: `${info.current_weather.temperature}`,
+            tag: `${info.current_weather.temperature}`,
+          });
+        }, 3600000);
+      } else {
+        clearInterval(interval);
+      }
+    });
+  }, [location]);
+
   const findIcon = () => {
     weatherCodes.map((code) => {
       code.codes.includes(stateCode) ? setState(code) : null;
