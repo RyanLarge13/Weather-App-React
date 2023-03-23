@@ -46,17 +46,45 @@ const TodaysForcast = ({ info, dayOrNight }) => {
   useEffect(() => {
     Notification.requestPermission().then((res) => {
       let interval;
+      let hours = new Date().getHours();
+      const amPmHour = hours % 12 || 12;
+      const formattedHour = amPmHour.toString();
       if (Notification.permission === "granted") {
-        interval = setInterval(() => {
-          const notify = new Notification(`Weather in ${location}`, {
-            body: `${info.current_weather.temperature}`,
+        const notif = new Notification(
+          `${location} ${
+            hours >= 12 ? formattedHour + " pm" : formattedHour + " am"
+          }`,
+          {
+            body: `${info.current_weather.temperature} F`,
             tag: `${info.current_weather.temperature}`,
+            icon: icon,
+            image: icon,
+          }
+        );
+        interval = setInterval(() => {
+          const notif = new Notification(
+            `${location} ${new Date().getDate.toLocaleDateString()}`,
+            {
+              body: `${info.current_weather.temperature}`,
+              tag: `${info.current_weather.temperature}`,
+              icon,
+              image: icon,
+            }
+          );
+          notif.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open("https://weather-app-react-lac.vercel.app/");
           });
         }, 3600000);
+        notif.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.open("https://weather-app-react-lac.vercel.app/");
+        });
       } else {
         clearInterval(interval);
       }
     });
+    return notif.close();
   }, [location]);
 
   const findIcon = () => {
