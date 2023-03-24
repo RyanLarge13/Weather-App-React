@@ -1,4 +1,4 @@
-import { useState, useEffect, CSSProperties } from "react";
+import { useState, useEffect } from "react";
 import { CircleLoader } from "react-spinners";
 import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
@@ -29,7 +29,7 @@ const App = () => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     Axios.get(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation,weathercode,windspeed_10m,winddirection_10m,windgusts_10m,temperature_80m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=${timeZone}`
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,windspeed_10m,winddirection_10m,windgusts_10m,temperature_80m&daily=uv_index_max,weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_mean&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=${timeZone}`
     )
       .then((res) => {
         setInfo(res.data);
@@ -49,8 +49,6 @@ const App = () => {
     day.includes(hour.toString()) ? setDayOrNight(true) : setDayOrNight(false);
   };
 
-  const override = {};
-
   return (
     <section className={dayOrNight ? "day-background" : "night-background"}>
       <div className="bg-img"></div>
@@ -63,7 +61,7 @@ const App = () => {
         </section>
       ) : (
         <section className="loading">
-          <CircleLoader cssOverride={override} size={200} />
+          <CircleLoader size={200} />
         </section>
       )}
     </section>

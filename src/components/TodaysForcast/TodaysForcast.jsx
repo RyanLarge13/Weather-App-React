@@ -15,6 +15,9 @@ import CloudyNight from "../../assets/weather-icons-master/production/fill/all/p
 import RainyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-rain.svg";
 import SnowyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-snow.svg";
 import StormyNight from "../../assets/weather-icons-master/production/fill/all/thunderstorms-night-rain.svg";
+import FoggyDay from "../../assets/weather-icons-master/production/fill/all/fog-day.svg";
+import FoggyNight from "../../assets/weather-icons-master/production/fill/all/fog-night.svg";
+import Drizzle from "../../assets/weather-icons-master/production/fill/all/drizzle.svg";
 import TargetedInfo from "./TargetedInfo";
 
 const TodaysForcast = ({ info, dayOrNight }) => {
@@ -105,6 +108,8 @@ const TodaysForcast = ({ info, dayOrNight }) => {
     if (icon === 2) setIconComponent(dayOrNight ? RainyDay : RainyNight);
     if (icon === 3) setIconComponent(dayOrNight ? SnowyDay : SnowyNight);
     if (icon === 4) setIconComponent(dayOrNight ? StormyDay : StormyNight);
+    if (icon === 5) setIconComponent(dayOrNight ? FoggyDay : FoggyNight);
+    if (icon === 6) setIconComponent(Drizzle);
     if (windy) setIconComponent(WindyDay);
   }, [windy, icon]);
 
@@ -158,7 +163,15 @@ const TodaysForcast = ({ info, dayOrNight }) => {
           )}
         </div>
       </div>
-      <TargetedInfo />
+      <TargetedInfo
+        details={info.daily}
+        precipitation={Math.ceil(
+          info.hourly.precipitation_probability.reduce(
+            (a, b) => a + b / info.hourly.precipitation_probability.length
+          )
+        )}
+        name={weatherName}
+      />
     </section>
   );
 };

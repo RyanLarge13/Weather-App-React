@@ -22,6 +22,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
 			.icon {
 				width: 60px;
 				height: 60px;
@@ -35,7 +36,7 @@
 			align-items: center;
 
 			.high-container,
-			.low-container, {
+			.low-container {
 				display: flex;
 				justify-content: flex-start;
 				align-items: center;
@@ -52,6 +53,24 @@
 
 			.sunrise,
 			.sunset {
+				width: 40px;
+				height: 40px;
+			}
+		}
+	}
+
+	.precip-uv-container {
+		margin-top: 1em;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.precip-uv {
+			display: flex;
+			justify-content: start;
+			align-items: center;
+
+			img {
 				width: 40px;
 				height: 40px;
 			}

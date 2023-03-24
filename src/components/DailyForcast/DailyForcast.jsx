@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
 import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
+import RainDrops from "../../assets/weather-icons-master/production/fill/all/raindrops.svg";
 import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
 import CloudyDay from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-day.svg";
 import StormyDay from "../../assets/weather-icons-master/production/fill/all/thunderstorms-day-rain.svg";
@@ -9,6 +10,7 @@ import SunSet from "../../assets/weather-icons-master/production/fill/all/moonri
 import SunRise from "../../assets/weather-icons-master/production/fill/all/sunrise.svg";
 import High from "../../assets/weather-icons-master/production/fill/all/thermometer-warmer.svg";
 import Low from "../../assets/weather-icons-master/production/fill/all/thermometer-colder.svg";
+import UV from "../../assets/weather-icons-master/production/fill/all/uv-index.svg";
 import "./dailyForcast.scss";
 
 const DailyForcast = ({ info }) => {
@@ -87,6 +89,16 @@ const DailyForcast = ({ info }) => {
                   {info.sunset[index].substring(14)} PM
                 </h4>
               </div>
+            </div>
+          </div>
+          <div className="precip-uv-container">
+            <div className="precip-uv">
+              <img src={RainDrops} alt="rain chance" />
+              <p>{info.precipitation_probability_mean[index]}%</p>
+            </div>
+            <div className="precip-uv">
+              <img src={UV} alt="uv index" />
+              <p>{info.uv_index_max[index]}</p>
             </div>
           </div>
         </motion.div>

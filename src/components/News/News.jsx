@@ -7,10 +7,10 @@ const News = () => {
 
   useEffect(() => {
     Axios.get(
-      "https://newsapi.org/v2/top-headlines?country=us&pageSize=3&apiKey=ff3d6a14008e4181b4ea4dfaac4a1da3"
+      "https://api.thenewsapi.com/v1/news/all?api_token=YUI4Vf60MjQUdG1dcD32RhudQP1fHnenZZ4Bm6NM&language=en&limit=3"
     )
       .then((res) => {
-        setNews(res.data.articles);
+        setNews(res.data.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -19,12 +19,11 @@ const News = () => {
       {news &&
         news.map((article) => (
           <div
-            key={article.source.id}
+            key={article.uuid}
             onClick={() => (window.location.href = article.url)}
             className="article"
           >
-            <p>{article.title.split("-")[0]}</p>
-            <p> - {article.title.split("-")[1]}</p>
+            <p>{article.title}</p>
           </div>
         ))}
     </section>
