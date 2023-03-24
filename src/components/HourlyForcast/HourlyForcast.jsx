@@ -22,8 +22,8 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
         {info.time.map((i, index) =>
           index < 24 + hour && index > hour - 1 ? (
             <motion.div
-              initial={{ scale: 0.5 }}
-              whileInView={{ scale: 1 }}
+              initial={{ y: 25 }}
+              whileInView={{ y: 0 }}
               className="hourly-div"
               key={index}
             >
@@ -60,17 +60,22 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
                 }
                 alt="icon"
               />
-              <h2 className="temp">{info.apparent_temperature[index]} °F</h2>
+              <h2 className="temp">{info.temperature_2m[index]} °F</h2>
+              <p className="apparent">
+                feels like {info.apparent_temperature[index]}
+              </p>
               <div className="humid">
                 <img src={Humid} alt="humidity" />
-                <h3>{info.relativehumidity_2m[index]}</h3>
+                <h3>{info.relativehumidity_2m[index]}%</h3>
               </div>
               <div className="wind">
                 <img src={Wind} alt="windspeed" />
                 <h4>{info.windspeed_10m[index]} mph</h4>
               </div>
               <h5>
-                {Number(i.substring(11, 13)) >= 12
+                {index === new Date().getHours()
+                  ? "Now"
+                  : Number(i.substring(11, 13)) >= 12
                   ? `${i.substring(11, 13) % 12 || 12} PM`
                   : `${i.substring(11, 13) % 12 || 12} AM`}
               </h5>

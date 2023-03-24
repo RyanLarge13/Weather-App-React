@@ -84,7 +84,6 @@ const TodaysForcast = ({ info, dayOrNight }) => {
         clearInterval(interval);
       }
     });
-    return notif.close();
   }, [location]);
 
   const findIcon = () => {
@@ -96,30 +95,29 @@ const TodaysForcast = ({ info, dayOrNight }) => {
   const setState = (code) => {
     setIcon(code.icon);
     setWeatherName(code.name);
-    info.current_weather.windspeed > 10 ? setWindy(true) : setWindy(false);
-    checkState();
+    info.current_weather.windspeed > 25 ? setWindy(true) : setWindy(false);
   };
 
-  const checkState = () => {
-    if (windy) setIconComponent(WindyDay);
+  useEffect(() => {
     if (icon === 0) setIconComponent(dayOrNight ? ClearDay : ClearNight);
     if (icon === 1) setIconComponent(dayOrNight ? CloudyDay : CloudyNight);
     if (icon === 2) setIconComponent(dayOrNight ? RainyDay : RainyNight);
     if (icon === 3) setIconComponent(dayOrNight ? SnowyDay : SnowyNight);
     if (icon === 4) setIconComponent(dayOrNight ? StormyDay : StormyNight);
-  };
+    if (windy) setIconComponent(WindyDay);
+  }, [windy, icon]);
 
   return (
     <section className="todays-forcast">
-      <motion.img
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.75, type: "spring", stiffness: 500 }}
-        className="icon"
-        src={iconComponent}
-      />
-      <div className="dates-location">
-        <div className="todays-date-container">
+      <div className="img-week">
+        <motion.img
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.75, type: "spring", stiffness: 500 }}
+          className="icon"
+          src={iconComponent}
+        />
+        <div className="date">
           <p className="week-day">
             {new Date().toLocaleDateString("en-US", {
               weekday: "short",
@@ -132,20 +130,38 @@ const TodaysForcast = ({ info, dayOrNight }) => {
             })}
           </p>
         </div>
-        <div className="location">
-          <ImLocation className="location-icon" />
-          <h2 className="location">{location}</h2>
-        </div>
       </div>
-      <div className="info-body">
-        <h1 className="weather-name">{weatherName}</h1>
-        <div className="temp-windspeed">
-          <h2>{`${info.current_weather.temperature} °F`}</h2>
-          <div className="wind-container">
-            <h2>{`${info.current_weather.windspeed} mph`}</h2>
-            <img src={WindyDay} alt="wind" className="wind" />
+      <div className="dates-location">
+        <div className="info-body">
+          <h1 className="weather-name">{weatherName}</h1>
+          <div className="temp-windspeed">
+            <h2>{`${info.current_weather.temperature} °F`}</h2>
+            <div className="wind-container">
+              <h2>{`${info.current_weather.windspeed} mph`}</h2>
+              <img src={WindyDay} alt="wind" className="wind" />
+            </div>
           </div>
         </div>
+        <div className="location-container">
+          <ImLocation className="location-icon" />
+          {location ? (
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="location"
+            >
+              {location}
+            </motion.h2>
+          ) : (
+            <p>Loading..</p>
+          )}
+        </div>
+      </div>
+      <div className="squares-container">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
+import { CircleLoader } from "react-spinners";
 import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
 import HourlyForcast from "./components/HourlyForcast/HourlyForcast";
@@ -47,6 +48,10 @@ const App = () => {
     day.includes(hour.toString()) ? setDayOrNight(true) : setDayOrNight(false);
   };
 
+  const override = {
+    
+  };
+
   return (
     <section className={dayOrNight ? "day-background" : "night-background"}>
       <div className="bg-img"></div>
@@ -57,7 +62,9 @@ const App = () => {
           <DailyForcast info={dailyInfo} />
         </section>
       ) : (
-        <section className="loading"></section>
+        <section className="loading">
+          <CircleLoader cssOverride={override}  size={200}/>
+        </section>
       )}
     </section>
   );

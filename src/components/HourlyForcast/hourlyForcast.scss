@@ -15,7 +15,6 @@
 
 	.hourly-div {
 		min-width: 40%;
-		height: 300px;
 		border-radius: 10px;
 		box-shadow: 0 0 0.25em 0 #eee;
 		margin: 5%;
@@ -23,38 +22,41 @@
 		color: #000;
 		background-color: rgba(255, 255, 255, 0.5);
 		position: relative;
-
+		text-align: center;
 		.icon {
 			width: 100px;
 			height: 100px;
 		}
+		.apparent {
+			font-size: 0.8em;
+			margin-top: 1em;
+			padding: 0 1.5em;
+		}
 
 		.wind {
 			display: flex;
-			justify-content: flex-start;
+			flex-direction: column;
+			justify-content: center;
 			align-items: center;
 			img {
-				width: 25px;
-				height: 25px;
+				width: 40px;
+				height: 40px;
 			}
 		}
 		.humid {
 			display: flex;
-			justify-content: flex-start;
+			flex-direction: column;
+			justify-content: center;
 			align-items: center;
 			margin-top: 40px;
 			img {
-				width: 25px;
-				height: 25px;
+				width: 40px;
+				height: 40px;
 			}
 		}
 
 		h5 {
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			padding: 1em;
+			margin-top: 1em;
 			font-size: 1em;
 		}
 	}

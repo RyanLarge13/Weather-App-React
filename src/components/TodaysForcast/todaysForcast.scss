@@ -9,72 +9,42 @@
 	margin: 1em;
 	border-radius: 1em;
 
-	.icon {
-		width: 200px;
-		height: 200px;
-		position: absolute;
-		top: 0;
-		left: 0;
+	.img-week {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+		.icon {
+			width: 200px;
+			height: 200px;
+		}
+		.date {
+			text-align: center;
+			font-size: 2em;
+		}
 	}
 
 	.dates-location {
-		position: absolute;
-		top: 25px;
-		right: 25px;
 		display: flex;
-		flex-direction: column;
 		justify-content: space-between;
-		align-items: center;
+		align-items: end;
 
-		.todays-date-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 2em;
-
-			.week-day {
-				font-weight: 600;
-				font-size: 50px;
-			}
-
-			.year-day {
-				font-weight: 600;
-				font-size: 25px;
-			}
-		}
-		.location {
-			text-align: center;
-			max-width: min-content;
-
-			.location-icon {
-				font-size: 2em;
-			}
-		}
-	}
-
-	.info-body {
-		margin-top: 165px;
-		.weather-name {
-			align-self: flex-start;
-		}
-
-		.temp-windspeed {
-
+		.info-body {
 			.wind-container {
 				display: flex;
-				justify-content: start;
+				justify-content: center;
 				align-items: center;
+
 				.wind {
-					width: 30px;
-					height: 30px;
+					width: 40px;
+					height: 40px;
 				}
 			}
+		}
 
-			.location {
-				font-size: 1em;
-				max-width: 25%;
-			}
+		.location-container {
+			text-align: center;
+			max-width: 25%;
+			overflow-wrap: break-line;
 		}
 	}
 }
