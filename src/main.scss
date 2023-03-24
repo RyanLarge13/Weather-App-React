@@ -37,6 +37,10 @@
 		background-color: rgba(255,255,255,0.4);
 		box-shadow: none;
 	}
+	.article {
+		background-color: rgba(255, 255, 255, 0.4);
+		box-shadow: none;
+	}
 }
 
 .night-background {
@@ -68,6 +72,11 @@
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
 	.day {
+		background-color: rgba(0,0,0,0.8);
+		color: #fff;
+		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
+	}
+	.article {
 		background-color: rgba(0,0,0,0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;

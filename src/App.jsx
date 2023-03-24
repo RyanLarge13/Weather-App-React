@@ -4,6 +4,7 @@ import Axios from "axios";
 import TodaysForcast from "./components/TodaysForcast/TodaysForcast";
 import HourlyForcast from "./components/HourlyForcast/HourlyForcast";
 import DailyForcast from "./components/DailyForcast/DailyForcast";
+import News from "./components/News/News";
 import militaryTimeArray from "./militaryTime";
 import "./main.scss";
 
@@ -48,9 +49,7 @@ const App = () => {
     day.includes(hour.toString()) ? setDayOrNight(true) : setDayOrNight(false);
   };
 
-  const override = {
-    
-  };
+  const override = {};
 
   return (
     <section className={dayOrNight ? "day-background" : "night-background"}>
@@ -58,12 +57,13 @@ const App = () => {
       {info ? (
         <section className="main-sec">
           <TodaysForcast info={info} dayOrNight={dayOrNight} />
+          <News />
           <HourlyForcast info={hourlyInfo} sunrise={sunrise} sunset={sunset} />
           <DailyForcast info={dailyInfo} />
         </section>
       ) : (
         <section className="loading">
-          <CircleLoader cssOverride={override}  size={200}/>
+          <CircleLoader cssOverride={override} size={200} />
         </section>
       )}
     </section>

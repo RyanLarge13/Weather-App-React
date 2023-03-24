@@ -15,6 +15,7 @@ import CloudyNight from "../../assets/weather-icons-master/production/fill/all/p
 import RainyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-rain.svg";
 import SnowyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-snow.svg";
 import StormyNight from "../../assets/weather-icons-master/production/fill/all/thunderstorms-night-rain.svg";
+import TargetedInfo from "./TargetedInfo";
 
 const TodaysForcast = ({ info, dayOrNight }) => {
   const [icon, setIcon] = useState(null);
@@ -157,12 +158,7 @@ const TodaysForcast = ({ info, dayOrNight }) => {
           )}
         </div>
       </div>
-      <div className="squares-container">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      </div>
+      <TargetedInfo />
     </section>
   );
 };
