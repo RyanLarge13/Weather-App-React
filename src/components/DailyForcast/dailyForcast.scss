@@ -5,8 +5,15 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 95%;
+	padding: 3em;
 	margin: auto;
+
+	@media (min-width: 1200px) and (max-width: 2000px) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 1em;
+		overflow: hidden;
+	}
 
 	.day {
 		width: 100%;

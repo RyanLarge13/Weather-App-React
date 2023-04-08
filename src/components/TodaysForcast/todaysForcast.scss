@@ -5,7 +5,7 @@
 }
 
 .todays-forcast {
-	padding: 1em;
+	padding: 3em;
 	margin: 1em;
 	border-radius: 1em;
 
@@ -62,5 +62,16 @@
 		border-radius: 1em;
 		background-color: rgba(255, 255, 255, 0.4);
 		text-align: center;
+	}
+}
+
+@media (min-width: 1200px) and (max-width: 2000px) {
+	.todays-forcast {
+		padding: 2em;
+		max-width: 50%;
+	}
+
+	.target-container {
+		grid-template-columns: repeat(4, 1fr);
 	}
 }

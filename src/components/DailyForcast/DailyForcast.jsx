@@ -38,6 +38,7 @@ const DailyForcast = ({ info }) => {
         <motion.div
           initial={{ y: 50 }}
           whileInView={{ y: 0 }}
+          whileHover={{ scale: 1.25, backgroundColor: "#fff", zIndex: 999 }}
           key={index}
           className="day"
         >

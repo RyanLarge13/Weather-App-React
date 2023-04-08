@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Axios from "axios";
 import "./news.scss";
 
@@ -18,13 +19,14 @@ const News = () => {
     <section className="news">
       {news &&
         news.map((article) => (
-          <div
+          <motion.div
+            whileHover={{ backgroundColor: "#fff" }}
             key={article.uuid}
             onClick={() => (window.location.href = article.url)}
             className="article"
           >
             <p>{article.title}</p>
-          </div>
+          </motion.div>
         ))}
     </section>
   );

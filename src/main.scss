@@ -1,5 +1,6 @@
 //--ignore-compile
 @import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -7,12 +8,22 @@
 	font-family: 'Kavoon', cursive;
 }
 
+.flex-container {
+	@media (min-width: 1000px) {
+		display: flex;
+		padding: 3em;
+	}
+}
+
+.flex-container-2 {
+	@media (min-width: 1000px) {
+		overflow-y: visible;
+	}
+}
+
 .day-background {
 	.bg-img {
-		background-image: url("./assets/daytime-bg.jpeg");
-		background-position: bottom;
-		background-repeat: no-repeat;
-		background-size: cover;
+		background-color: skyblue;
 		min-height: 100vh;
 		min-width: 100vw;
 		position: fixed;
@@ -26,17 +37,20 @@
 	}
 
 	.todays-forcast {
-		background-color: rgba(255, 255, 255, 0.4);
+		background-color: rgba(255, 255, 255, 0.5);
 		box-shadow: none;
 	}
+
 	.hourly-div {
-		background-color: rgba(255,255,255,0.4);
+		background-color: rgba(255, 255, 255, 0.5);
 		box-shadow: none;
 	}
+
 	.day {
-		background-color: rgba(255,255,255,0.4);
+		background-color: rgba(255, 255, 255, 0.5);
 		box-shadow: none;
 	}
+
 	.article {
 		background-color: rgba(255, 255, 255, 0.4);
 		box-shadow: none;
@@ -45,10 +59,7 @@
 
 .night-background {
 	.bg-img {
-		background-image: url("./assets/nightime-bg.jpg");
-		background-position: bottom;
-		background-repeat: no-repeat;
-		background-size: cover;
+		background-color: #222;
 		min-height: 100vh;
 		min-width: 100vw;
 		position: fixed;
@@ -62,22 +73,25 @@
 	}
 
 	.todays-forcast {
-		background-color: rgba(0,0,0,0.8);
+		background-color: rgba(0, 0, 0, 0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
+
 	.hourly-div {
-		background-color: rgba(0,0,0,0.8);
+		background-color: rgba(0, 0, 0, 0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
+
 	.day {
-		background-color: rgba(0,0,0,0.8);
+		background-color: rgba(0, 0, 0, 0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}
+
 	.article {
-		background-color: rgba(0,0,0,0.8);
+		background-color: rgba(0, 0, 0, 0.8);
 		color: #fff;
 		box-shadow: 0 0.1em 0.25em 0 #9d4edd;
 	}

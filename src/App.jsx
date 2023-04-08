@@ -54,10 +54,18 @@ const App = () => {
       <div className="bg-img"></div>
       {info ? (
         <section className="main-sec">
-          <TodaysForcast info={info} dayOrNight={dayOrNight} />
-          <News />
-          <HourlyForcast info={hourlyInfo} sunrise={sunrise} sunset={sunset} />
-          <DailyForcast info={dailyInfo} />
+          <div className="flex-container">
+            <TodaysForcast info={info} dayOrNight={dayOrNight} />
+            <News />
+          </div>
+          <div className="flex-container-2">
+            <HourlyForcast
+              info={hourlyInfo}
+              sunrise={sunrise}
+              sunset={sunset}
+            />
+            <DailyForcast info={dailyInfo} />
+          </div>
         </section>
       ) : (
         <section className="loading">

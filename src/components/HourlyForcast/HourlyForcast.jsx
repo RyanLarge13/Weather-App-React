@@ -24,6 +24,11 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
             <motion.div
               initial={{ y: 25 }}
               whileInView={{ y: 0 }}
+              whileHover={{
+                scale: 1.25,
+                backgroundColor: "#fff",
+                zIndex: 999,
+              }}
               className="hourly-div"
               key={index}
             >
