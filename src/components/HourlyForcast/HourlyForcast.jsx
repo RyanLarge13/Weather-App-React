@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import weatherCodes from "../../weatherCodes";
 import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
 import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
 import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
@@ -11,10 +12,21 @@ import CloudyNight from "../../assets/weather-icons-master/production/fill/all/p
 import RainyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-rain.svg";
 import SnowyNight from "../../assets/weather-icons-master/production/fill/all/partly-cloudy-night-snow.svg";
 import StormyNight from "../../assets/weather-icons-master/production/fill/all/thunderstorms-night-rain.svg";
+import FoggyDay from "../../assets/weather-icons-master/production/fill/all/fog-day.svg";
+import FoggyNight from "../../assets/weather-icons-master/production/fill/all/fog-night.svg";
+import Drizzle from "../../assets/weather-icons-master/production/fill/all/drizzle.svg";
+import WindyDay from "../../assets/weather-icons-master/production/fill/all/wind.svg";
 import "./hourlyForcast.scss";
 
-const HourlyForcast = ({ info, sunrise, sunset }) => {
+const HourlyForcast = ({ info, sunrise, sunset, dayOrNight }) => {
   const hour = new Date().getHours();
+
+  const calculateIcon = (weatherCode) => {
+    const decidedIcon = weatherCodes.filter((code) =>
+      code.codes.includes(weatherCode)
+    );
+    return decidedIcon[0].icon;
+  };
 
   return (
     <>
@@ -26,7 +38,7 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
               whileInView={{ y: 0 }}
               whileHover={{
                 scale: 1.25,
-                backgroundColor: "#fff",
+                backgroundColor: dayOrNight ? "#fff" : "#000",
                 zIndex: 999,
               }}
               className="hourly-div"
@@ -35,33 +47,39 @@ const HourlyForcast = ({ info, sunrise, sunset }) => {
               <img
                 className="icon"
                 src={
-                  info.weathercode[index] === 0
+                  info.windspeed_10m[index] > 25
+                    ? WindyDay
+                    : calculateIcon(info.weathercode[index]) === 0
                     ? i.substring(11, 13) >= sunrise &&
                       i.substring(11, 13) < sunset
                       ? ClearDay
                       : ClearNight
-                    : info.weathercode[index] >= 1 &&
-                      info.weathercode[index] <= 3
+                    : calculateIcon(info.weathercode[index]) === 1
                     ? i.substring(11, 13) >= sunrise &&
                       i.substring(11, 13) < sunset
                       ? CloudyDay
                       : CloudyNight
-                    : info.weathercode[index] >= 61 &&
-                      info.weathercode[index] <= 82
+                    : calculateIcon(info.weathercode[index]) === 2
                     ? i.substring(11, 13) >= sunrise &&
                       i.substring(11, 13) < sunset
                       ? RainyDay
                       : RainyNight
-                    : info.weathercode[index] >= 71 &&
-                      info.weathercode[index] <= 77
+                    : calculateIcon(info.weathercode[index]) === 3
                     ? i.substring(11, 13) >= sunrise &&
                       i.substring(11, 13) < sunset
                       ? SnowyDay
                       : SnowyNight
-                    : i.substring(11, 13) >= sunrise &&
+                    : calculateIcon(info.weathercode[index]) === 4
+                    ? i.substring(11, 13) >= sunrise &&
                       i.substring(11, 13) < sunset
-                    ? StormyDay
-                    : StormyNight
+                      ? StormyDay
+                      : StormyNight
+                    : calculateIcon(info.weathercode[index]) === 5
+                    ? i.substring(11, 13) >= sunrise &&
+                      i.substring(11, 13) < sunset
+                      ? FoggyDay
+                      : FoggyNight
+                    : calculateIcon(info.weathercode[index]) === 6 && Drizzle
                 }
                 alt="icon"
               />

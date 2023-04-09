@@ -13,7 +13,7 @@ import Low from "../../assets/weather-icons-master/production/fill/all/thermomet
 import UV from "../../assets/weather-icons-master/production/fill/all/uv-index.svg";
 import "./dailyForcast.scss";
 
-const DailyForcast = ({ info }) => {
+const DailyForcast = ({ info, dayOrNight }) => {
   const [days, setDays] = useState([
     "Sun",
     "Mon",
@@ -38,7 +38,11 @@ const DailyForcast = ({ info }) => {
         <motion.div
           initial={{ y: 50 }}
           whileInView={{ y: 0 }}
-          whileHover={{ scale: 1.25, backgroundColor: "#fff", zIndex: 999 }}
+          whileHover={{
+            scale: 1.25,
+            backgroundColor: dayOrNight ? "#fff" : "#000",
+            zIndex: 999,
+          }}
           key={index}
           className="day"
         >

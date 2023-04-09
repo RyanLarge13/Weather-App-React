@@ -1,7 +1,7 @@
 //--ignore-compile
 
 .news {
-	padding: 1em;
+	padding: 0 1em;
 
 	.article {
 		margin: 1em 0;
@@ -9,5 +9,50 @@
 		border-radius: 1em;
 		text-align: center;
 		cursor: pointer;
+	}
+
+	.loader-div {
+		margin: 1em 0;
+		padding: 1em;
+		border-radius: 1em;
+		width: 90vw;
+		height: 50px;
+		background-color: rgba(20, 20, 20, 0.2);
+		overflow: hidden;
+		position: relative;
+		box-shadow: 0 0 0.1 0 #eee;
+
+		@media (min-width: 1000px) {
+			width: 40vw;
+		}
+
+		.glare {
+			position: absolute;
+			top: -10px;
+			bottom: -10px;
+			background-color: rgba(255, 255, 255, 0.4);
+			filter: blur(10px);
+			transform: rotate(25deg);
+			width: 40px;
+			animation-name: loader;
+			animation-iteration-count: infinite;
+			animation-fill-mode: forwards;
+			animation-timing-function: linear;
+			animation-duration: 2.5s;
+		}
+	}
+
+	@keyframes loader {
+		0% {
+			left: -50%;
+		}
+
+		50% {
+			left: 50%;
+		}
+
+		100% {
+			left: 150%;
+		}
 	}
 }

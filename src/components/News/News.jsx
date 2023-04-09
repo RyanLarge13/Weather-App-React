@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Axios from "axios";
 import "./news.scss";
+import { CircleLoader } from "react-spinners";
 
-const News = () => {
+const News = ({ dayOrNight }) => {
   const [news, setNews] = useState(null);
 
   useEffect(() => {
@@ -17,17 +18,33 @@ const News = () => {
   }, []);
   return (
     <section className="news">
-      {news &&
+      {news ? (
         news.map((article) => (
           <motion.div
-            whileHover={{ backgroundColor: "#fff" }}
+            whileHover={{
+              backgroundColor: dayOrNight ? "#fff" : "#000",
+              scale: dayOrNight ? 1 : 1.1,
+            }}
             key={article.uuid}
             onClick={() => (window.location.href = article.url)}
             className="article"
           >
             <p>{article.title}</p>
           </motion.div>
-        ))}
+        ))
+      ) : (
+        <div>
+          <div className="loader-div">
+            <div className="glare"></div>
+          </div>
+          <div className="loader-div">
+            <div className="glare"></div>
+          </div>
+          <div className="loader-div">
+            <div className="glare"></div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

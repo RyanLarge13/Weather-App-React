@@ -5,10 +5,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 3em;
+	padding: 1em;
 	margin: auto;
 
 	@media (min-width: 1200px) and (max-width: 2000px) {
+		padding: 3em;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		column-gap: 1em;

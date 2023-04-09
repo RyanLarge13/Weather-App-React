@@ -4,11 +4,12 @@
 	display: flex;
 	overflow-x: auto;
 	overflow-y: hidden;
-	padding: 3em;
+	padding: 1em;
 	justify-content: flex-start;
 	align-items: center;
 
 	@media (min-width: 1200px) and (max-width: 2000px) {
+		padding: 3em;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		overflow: visible;

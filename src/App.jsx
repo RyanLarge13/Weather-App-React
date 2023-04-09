@@ -56,15 +56,16 @@ const App = () => {
         <section className="main-sec">
           <div className="flex-container">
             <TodaysForcast info={info} dayOrNight={dayOrNight} />
-            <News />
+            <News dayOrNight={dayOrNight} />
           </div>
           <div className="flex-container-2">
             <HourlyForcast
               info={hourlyInfo}
               sunrise={sunrise}
               sunset={sunset}
+              dayOrNight={dayOrNight}
             />
-            <DailyForcast info={dailyInfo} />
+            <DailyForcast info={dailyInfo} dayOrNight={dayOrNight} />
           </div>
         </section>
       ) : (
