@@ -7,6 +7,7 @@ import DailyForcast from "./components/DailyForcast/DailyForcast";
 import News from "./components/News/News";
 import militaryTimeArray from "./militaryTime";
 import "./main.scss";
+import "react-tooltip/dist/react-tooltip.css";
 
 const App = () => {
   const [info, setInfo] = useState(null);

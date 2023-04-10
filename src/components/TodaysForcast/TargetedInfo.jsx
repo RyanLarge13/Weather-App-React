@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Tooltip } from "react-tooltip";
 import Thermometer from "../../assets/weather-icons-master/production/fill/all/thermometer.svg";
 import Sunrise from "../../assets/weather-icons-master/production/fill/all/sunrise.svg";
 import Rain from "../../assets/weather-icons-master/production/fill/all/raindrops.svg";
@@ -14,7 +15,7 @@ import Uv9 from "../../assets/weather-icons-master/production/fill/all/uv-index-
 import Uv10 from "../../assets/weather-icons-master/production/fill/all/uv-index-10.svg";
 import Uv11 from "../../assets/weather-icons-master/production/fill/all/uv-index-11.svg";
 
-const TargetedInfo = ({ details, precipitation, name }) => {
+const TargetedInfo = ({ details, precipitation, name, dayOrNight }) => {
   const [uvIndex, setUvIndex] = useState(0);
   const [photo, setPhoto] = useState(Uv1);
 
@@ -37,32 +38,54 @@ const TargetedInfo = ({ details, precipitation, name }) => {
   }, [uvIndex]);
 
   return (
-    <section className="target-container">
-      <div className="target-info">
-        <img src={Thermometer} alt="high low temp" />
-        <p>
-          {details.temperature_2m_max[0]} / {details.temperature_2m_min[0]}
-        </p>
-      </div>
-      <div className="target-info">
-        <img src={Sunrise} alt="sunrise sunset" />
-        <p>
-          {details.sunrise[0].substring(11)[0] === "0"
-            ? details.sunrise[0].substring(12)
-            : details.sunrise[0].substring(11)}{" "}
-          am / {details.sunset[0].substring(11, 13) % 12 || 12}:
-          {details.sunset[0].substring(14)} pm
-        </p>
-      </div>
-      <div className="target-info">
-        <img src={Rain} alt="chance of rain" />
-        <p>{precipitation}%</p>
-      </div>
-      <div className="target-info">
-        <img src={photo} alt="uv index" />
-        <p>{uvIndex}</p>
-      </div>
-    </section>
+    <>
+      <Tooltip id="high-low" />
+      <Tooltip id="sunrise-sunset" />
+      <Tooltip id="chance-of-rain" />
+      <Tooltip id="uv-index" />
+      <section className="target-container">
+        <div
+          data-tooltip-id="high-low"
+          data-tooltip-content="High and Low temperature"
+          className="target-info"
+        >
+          <img src={Thermometer} alt="high low temp" />
+          <p>
+            {details.temperature_2m_max[0]} / {details.temperature_2m_min[0]}
+          </p>
+        </div>
+        <div
+          data-tooltip-id="sunrise-sunset"
+          data-tooltip-content="Sunrise & Sunset"
+          className="target-info"
+        >
+          <img src={Sunrise} alt="sunrise sunset" />
+          <p>
+            {details.sunrise[0].substring(11)[0] === "0"
+              ? details.sunrise[0].substring(12)
+              : details.sunrise[0].substring(11)}{" "}
+            am / {details.sunset[0].substring(11, 13) % 12 || 12}:
+            {details.sunset[0].substring(14)} pm
+          </p>
+        </div>
+        <div
+          data-tooltip-id="chance-of-rain"
+          data-tooltip-content="Chance of Rain Today"
+          className="target-info"
+        >
+          <img src={Rain} alt="chance of rain" />
+          <p>{precipitation}%</p>
+        </div>
+        <div
+          data-tooltip-id="uv-index"
+          data-tooltip-content="UV Index"
+          className="target-info"
+        >
+          <img src={photo} alt="uv index" />
+          <p>{uvIndex}</p>
+        </div>
+      </section>
+    </>
   );
 };
 

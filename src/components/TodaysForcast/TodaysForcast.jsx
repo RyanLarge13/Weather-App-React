@@ -171,6 +171,7 @@ const TodaysForcast = ({ info, dayOrNight }) => {
           )
         )}
         name={weatherName}
+        dayOrNight={dayOrNight}
       />
     </section>
   );
