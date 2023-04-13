@@ -1,5 +1,7 @@
 # Weather App React
 
+## Version 1.0.0
+
 ## Version 1
 
 <img src="https://img.shields.io/badge/Release-April 10, 2023-orange?style=for-the-badge&logo=react" alt="release date" /><br />
