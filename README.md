@@ -5,6 +5,8 @@
 <img src="https://img.shields.io/badge/Release-April 10, 2023-orange?style=for-the-badge&logo=react" alt="release date" /><br />
 <img src="https://img.shields.io/badge/Web-Visit Site-violet?style=for-the-badge&logo=appveyor" alt="website" /><br />
 <img src="https://img.shields.io/badge/License-MIT-indigo?style=for-the-badge&logo=opensourceinitiative" alt="website" /><br />
+<img src="https://img.shields.io/badge/Web-Visit Site-violet?style=for-the-badge&logo=appveyor" alt="website" /><br />
+<img src="https://img.shields.io/badge/License-MIT-indigo?style=for-the-badge&logo=opensourceinitiative" alt="website" /><br />
 
 <p><b>Weather App is a web application built for people interested in weather in there local area. In this application a user will allow their location and browser 
 notification (if desired too). The app will automatically detect the weather in your area
