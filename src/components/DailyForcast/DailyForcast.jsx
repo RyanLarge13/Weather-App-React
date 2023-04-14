@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import weatherCodes from "../../weatherCodes";
 import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
 import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
 import RainDrops from "../../assets/weather-icons-master/production/fill/all/raindrops.svg";
@@ -24,6 +25,12 @@ const DailyForcast = ({ info, dayOrNight }) => {
     "Sat",
   ]);
   const today = new Date().getDay();
+  const calculateIcon = (weatherCode) => {
+    const decidedIcon = weatherCodes.filter((code) =>
+      code.codes.includes(weatherCode)
+    );
+    return decidedIcon[0].icon;
+  };
 
   useEffect(() => {
     const firstSet = days.slice(0, today);
@@ -50,17 +57,19 @@ const DailyForcast = ({ info, dayOrNight }) => {
             <img
               className="icon"
               src={
-                info.weathercode[index] === 0
+                calculateIcon(info.weathercode[index]) === 0
                   ? ClearDay
-                  : info.weathercode[index] >= 1 && info.weathercode[index] <= 3
+                  : calculateIcon(info.weathercode[index]) === 1
                   ? CloudyDay
-                  : info.weathercode[index] >= 61 &&
-                    info.weathercode[index] <= 82
+                  : calculateIcon(info.weathercode[index]) === 2
                   ? RainyDay
-                  : info.weathercode[index] >= 71 &&
-                    info.weathercode[index] <= 77
+                  : calculateIcon(info.weathercode[index]) === 3
                   ? SnowyDay
-                  : StormyDay
+                  : calculateIcon(info.weathercode[index]) === 4
+                  ? StormyDay
+                  : calculateIcon(info.weathercode[index]) === 5
+                  ? FoggyDay
+                  : calculateIcon(info.weathercode[index]) === 6 && Drizzle
               }
               alt="icon"
             />
