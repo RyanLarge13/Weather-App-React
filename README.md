@@ -1,3 +1,5 @@
+<img style="width: 50px; height: 50px;" src="./public/faviconicon.svg" alt="app icon" /> 
+
 # Weather App React
 
 ## Version 1.0.0
