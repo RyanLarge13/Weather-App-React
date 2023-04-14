@@ -4,6 +4,7 @@ import { ImLocation } from "react-icons/im";
 import weatherCodes from "../../weatherCodes";
 import "./todaysForcast.scss";
 import Axios from "axios";
+import AppIcon from "../../assets/faviconicon.svg";
 import ClearDay from "../../assets/weather-icons-master/production/fill/all/clear-day.svg";
 import RainyDay from "../../assets/weather-icons-master/production/fill/all/rain.svg";
 import SnowyDay from "../../assets/weather-icons-master/production/fill/all/snow.svg";
@@ -61,8 +62,8 @@ const TodaysForcast = ({ info, dayOrNight }) => {
           {
             body: `${info.current_weather.temperature} F`,
             tag: `${info.current_weather.temperature}`,
-            icon: icon,
-            image: icon,
+            icon: AppIcon,
+            image: AppIcon,
           }
         );
         interval = setInterval(() => {
@@ -71,8 +72,8 @@ const TodaysForcast = ({ info, dayOrNight }) => {
             {
               body: `${info.current_weather.temperature}`,
               tag: `${info.current_weather.temperature}`,
-              icon,
-              image: icon,
+              icon: AppIcon,
+              image: AppIcon,
             }
           );
           notif.addEventListener("click", (e) => {
@@ -85,7 +86,7 @@ const TodaysForcast = ({ info, dayOrNight }) => {
           window.open("https://weather-app-react-lac.vercel.app/");
         });
       } else {
-        clearInterval(interval);
+        return clearInterval(interval);
       }
     });
   }, [location]);
