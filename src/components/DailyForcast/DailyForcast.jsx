@@ -11,6 +11,7 @@ import SunSet from "../../assets/weather-icons-master/production/fill/all/moonri
 import SunRise from "../../assets/weather-icons-master/production/fill/all/sunrise.svg";
 import High from "../../assets/weather-icons-master/production/fill/all/thermometer-warmer.svg";
 import Low from "../../assets/weather-icons-master/production/fill/all/thermometer-colder.svg";
+import Drizzle from "../../assets/weather-icons-master/production/fill/all/drizzle.svg";
 import UV from "../../assets/weather-icons-master/production/fill/all/uv-index.svg";
 import "./dailyForcast.scss";
 
