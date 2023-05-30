@@ -47,7 +47,7 @@ const DailyForcast = ({ info, dayOrNight }) => {
           initial={{ y: 50 }}
           whileInView={{ y: 0 }}
           whileHover={{
-            scale: 1.25,
+            scale: 1.01,
             backgroundColor: dayOrNight ? "#fff" : "#000",
             zIndex: 999,
           }}
